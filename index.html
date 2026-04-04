@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My GIF Gallery</title>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f6f8; /* soft neutral */
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .gif-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gif-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Mobile: single column */
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>My GIF Gallery</h1>
+
+  <div class="gallery">
+    <div class="gif-card">
+      <img src="gif1.gif" alt="GIF 1">
+    </div>
+    <div class="gif-card">
+      <img src="gif2.gif" alt="GIF 2">
+    </div>
+    <div class="gif-card">
+      <img src="gif3.gif" alt="GIF 3">
+    </div>
+    <div class="gif-card">
+      <img src="gif4.gif" alt="GIF 4">
+    </div>
+  </div>
+</body>
+</html>
