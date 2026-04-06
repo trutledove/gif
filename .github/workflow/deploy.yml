@@ -26,6 +26,18 @@ jobs:
           # 解压后的文件放到 videos 文件夹
           out-file-path: "videos"
 
+
+                # === 添加下面这一步来调试 ===
+      - name: List files to verify
+        run: |
+          echo "Listing root directory:"
+          ls -F
+          echo "Listing videos directory:"
+          ls -R videos/
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+
       # 3. （可选）如果解压后文件在 videos/videos/ 里，可以整理一下
       #    这里假设 release-downloader 解压后文件就在 videos 目录下
 
