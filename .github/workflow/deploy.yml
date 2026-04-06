@@ -1,0 +1,43 @@
+name: Deploy to Netlify
+
+# 当代码推送到 main 分支时触发
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 先把你的代码拉到虚拟机里
+      - uses: actions/checkout@v4
+
+      # 2. 【关键步骤】从 Release 下载视频压缩包并自动解压
+      #    使用 marketplaces 上的 release-downloader 工具
+      - name: Download videos from Release
+        uses: robinraju/release-downloader@v1.11
+        with:
+          # 下载最新版本 Release 里的文件
+          latest: true
+          # 要下载的文件名（就是你刚才上传的压缩包名字）
+          fileName: "emoji.zip"
+          # 自动解压 zip 文件
+          extract: true
+          # 解压后的文件放到 videos 文件夹
+          out-file-path: "videos"
+
+      # 3. （可选）如果解压后文件在 videos/videos/ 里，可以整理一下
+      #    这里假设 release-downloader 解压后文件就在 videos 目录下
+
+      # 4. 触发 Netlify 部署
+      #    这一步有多种方式，这里以官方 action 为例
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: './'  # 你的静态文件目录
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
