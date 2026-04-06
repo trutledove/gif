@@ -20,7 +20,7 @@ jobs:
           # 下载最新版本 Release 里的文件
           latest: true
           # 要下载的文件名（就是你刚才上传的压缩包名字）
-          fileName: "emoji.zip"
+          fileName: "videos.zip"
           # 自动解压 zip 文件
           extract: true
           # 解压后的文件放到 videos 文件夹
